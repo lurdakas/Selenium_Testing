@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -55,9 +57,9 @@ public class ElentaTests {
     public void test1correctRegistration() {
         driver.get("https://elenta.lt/registracija");
         WebElement usernameField = driver.findElement(By.id("UserName"));
-        usernameField.sendKeys("=(^o^)=");
+        usernameField.sendKeys("==(o..o)==");
         WebElement emailField = driver.findElement(By.id("Email"));
-        emailField.sendKeys("Testttt@test.test");
+        emailField.sendKeys("Teessttttttt@tesst.test");
         WebElement passwordField = driver.findElement(By.id("Password"));
         passwordField.sendKeys("testas123");
         WebElement password2Field = driver.findElement(By.id("Password2"));
@@ -65,6 +67,34 @@ public class ElentaTests {
 
         driver.findElement(By.className("bigNavBtn2")).click();
     }
+
+
+    @Test
+    public void test2uploadingPost() {
+        driver.get("https://elenta.lt/registracija");
+        driver.findElement(By.id("submit-new-ad-nav-button")).click();
+        driver.findElement(By.className("subcategory-title-choose")).click();
+        driver.findElement(By.className("subcategory-title-choose")).click();
+        WebElement textBox = driver.findElement(By.id("title"));
+        textBox.sendKeys("Ferrari");
+        WebElement textBox2 = driver.findElement(By.className("processed"));
+        textBox2.sendKeys("Experience unmatched performance with this pristine Ferrari, boasting a roaring V8 engine and sleek aerodynamic design. Own a piece of Italian luxury, meticulously maintained and ready to exhilarate on every drive.");
+        WebElement phoneNo = driver.findElement(By.id("phone"));
+        phoneNo.sendKeys("37062356112");
+        driver.findElement(By.id("submit-button")).click();
+        driver.findElement(By.id("inputfile")).sendKeys("/Users/lurdakasileviciute/Desktop/Ferrari/ferrari.jpg");
+        driver.findElement(By.id("forward-button")).click();
+        driver.findElement(By.id("forward-button")).click();
+
+    }
+
+
+
+
+
+
+
+
 
 
     @AfterClass
